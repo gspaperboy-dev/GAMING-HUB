@@ -1,232 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Daily News Hub</title>
-    
-    <style>
-        /* Global Styles (NO CHANGES HERE) */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5; 
-            color: #1c1e21; 
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        /* Header & Navigation (NO CHANGES HERE) */
-        header {
-            background: #fff; 
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 10px 0;
-            text-align: center;
-        }
-        
-        .logo {
-            color: #1877f2;
-            font-size: 2em;
-            font-weight: bold;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .topnav a {
-            color: #606770; 
-            text-decoration: none;
-            padding: 8px 15px;
-            font-size: 16px;
-            display: inline-block;
-            transition: 0.3s;
-        }
-
-        .topnav a:hover {
-            color: #1877f2;
-        }
-
-        /* Main Content Layout (NO CHANGES HERE) */
-        .container {
-            max-width: 1100px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-
-        /* --- TOP STORY SECTION (NO CHANGES HERE) --- */
-        .top-story {
-            background-color: #fff;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-        }
-
-        .top-story h2 {
-            color: #1877f2;
-            font-size: 2.2em;
-            margin-top: 0;
-        }
-
-        .top-story img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-bottom: 15px;
-        }
-        
-        /* --- CATEGORY CARDS SECTION (NO CHANGES HERE) --- */
-        h2.section-title {
-            font-size: 1.8em;
-            color: #1c1e21;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .news-card {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-            overflow: hidden;
-            text-decoration: none; 
-            color: inherit;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-        }
-
-        .card-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .card-content {
-            padding: 15px;
-            flex-grow: 1;
-        }
-
-        .card-content h3 {
-            color: #1877f2;
-            margin-top: 0;
-            font-size: 1.2em;
-        }
-        
-        .category-tag {
-            display: inline-block;
-            background-color: #f0f2f5;
-            color: #1c1e21;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        /* Footer (NO CHANGES HERE) */
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            font-size: 0.9em;
-        }
-
-        /* Responsive adjustments (NO CHANGES HERE) */
-        @media (max-width: 768px) {
-            .container {
-                margin: 10px auto;
-            }
-            .top-story {
-                padding: 20px;
-            }
-            .top-story h2 {
-                font-size: 1.8em;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Clock Website</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: #f0f0f0;
+        padding: 20px;
+    }
+    h1 {
+        color: #333;
+    }
+    #clock {
+        font-size: 3em;
+        margin: 20px 0;
+    }
+    input, button {
+        padding: 10px;
+        margin: 5px;
+        font-size: 1em;
+    }
+    #stopwatchDisplay {
+        font-size: 2em;
+        margin: 10px 0;
+    }
+</style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <a href="#" class="logo">Daily News Hub</a>
-            <nav class="topnav">
-                <a href="#">Home</a>
-                <a href="#">World</a>
-                <a href="#">Local</a>
-                <a href="#">Tech</a>
-                <a href="#">Sports</a>
-            </nav>
-        </div>
-    </header>
+<h1>⏰ My Clock Website</h1>
 
-    <div class="container">
+<!-- Real-time Clock -->
+<div id="clock">00:00:00</div>
 
-        <section class="top-story">
-            <img src="https://via.placeholder.com/1100x400?text=Thailand+Royal+News" alt="Thailand's Queen Mother Sirikit" style="filter: grayscale(40%);">
-            <h2>🇹🇭 Year-Long Mourning as Thailand's Queen Mother Sirikit Dies at 93</h2>
-            <p>Queen Mother Sirikit, a highly influential and long-serving figure in the royal family, has passed away, marking the start of a year-long mourning period in the nation.</p>
-            <a href="https://www.google.com/search?q=Thailand+Queen+Mother+Sirikit+Dies" target="_blank" style="color:#1877f2; text-decoration:none; font-weight:bold;">Read Full Article »</a>
-        </section> <h2 class="section-title">GLOBAL HEADLINE</h2>
-        <div class="card-grid">
+<!-- Alarm -->
+<h2>Set Alarm</h2>
+<input type="time" id="alarmTime">
+<button onclick="setAlarm()">Set Alarm</button>
+<p id="alarmStatus"></p>
 
-            <a href="https://www.google.com/search?q=gaza+governance+factions" target="_blank" class="news-card">
-                <img src="https://via.placeholder.com/400x200?text=Gaza+Technocrats" alt="Gaza News" class="card-image">
-                <div class="card-content">
-                    <span class="category-tag">WORLD POLITICS</span>
-                    <h3>Post-War Gaza: Factions Agree on Independent Technocrat Committee</h3>
-                    <p>Palestinian factions have reportedly agreed that an independent committee of technocrats will take over the running of post-war Gaza.</p>
-                </div>
-            </a>
+<!-- Stopwatch -->
+<h2>Stopwatch</h2>
+<div id="stopwatchDisplay">00:00:00</div>
+<button onclick="startStopwatch()">Start</button>
+<button onclick="stopStopwatch()">Stop</button>
+<button onclick="resetStopwatch()">Reset</button>
 
-            <a href="https://www.google.com/search?q=US+China+Trade+Tensions+Trump" target="_blank" class="news-card">
-                <img src="https://via.placeholder.com/400x200?text=Trump+Xi+Meeting" alt="US China Trade Talks" class="card-image">
-                <div class="card-content">
-                    <span class="category-tag">TRADE & BUSINESS</span>
-                    <h3>US-China Tensions: Trump Scheduled to Meet Xi Jinping on Asia Trip</h3>
-                    <p>US President Donald Trump is set to meet China's Xi Jinping to address escalating trade tariffs between the world's two largest economies.</p>
-                </div>
-            </a>
+<script>
+// ---------------------- CLOCK ----------------------
+function updateClock() {
+    const now = new Date();
+    const time = now.toLocaleTimeString();
+    document.getElementById('clock').textContent = time;
 
-            <a href="https://www.google.com/search?q=US+Sanctions+Colombian+President+Petro" target="_blank" class="news-card">
-                <img src="https://via.placeholder.com/400x200?text=Colombia+Sanctions" alt="Colombia Sanctions" class="card-image">
-                <div class="card-content">
-                    <span class="category-tag">AMERICAS</span>
-                    <h3>US Sanctions Colombian President Petro Over Failure to Halt Cartels</h3>
-                    <p>The United States has placed sanctions on President Gustavo Petro, citing his administration's alleged failure to effectively tackle drug cartels.</p>
-                </div>
-            </a>
-            
-            <a href="https://www.google.com/search?q=Canada+Trade+Talks+Terminated" target="_blank" class="news-card">
-                <img src="https://via.placeholder.com/400x200?text=Canada+Trade" alt="Canada Trade" class="card-image">
-                <div class="card-content">
-                    <span class="category-tag">DIPLOMACY</span>
-                    <h3>Canada Trade Talks Terminated by Trump Over Controversial Ad</h3>
-                    <p>President Trump abruptly ended trade negotiations with Canada after a political advertisement criticized his tariff policies.</p>
-                </div>
-            </a>
+    // Check Alarm
+    if(alarmTime && time === alarmTime) {
+        alert("⏰ Alarm! Time is " + alarmTime);
+        alarmTime = null;
+        document.getElementById('alarmStatus').textContent = "Alarm Finished!";
+    }
+}
+setInterval(updateClock, 1000);
 
-        </div> </div> <footer>
-        <p>My Daily News Hub &copy; 2025 | All Rights Reserved.</p>
-    </footer>
+// ---------------------- ALARM ----------------------
+let alarmTime = null;
+function setAlarm() {
+    const input = document.getElementById('alarmTime').value;
+    if(input) {
+        alarmTime = input + ":00"; // adding seconds
+        document.getElementById('alarmStatus').textContent = "Alarm set for " + alarmTime;
+    }
+}
+
+// ---------------------- STOPWATCH ----------------------
+let stopwatchInterval;
+let stopwatchSeconds = 0;
+
+function formatTime(seconds) {
+    const hrs = String(Math.floor(seconds / 3600)).padStart(2,'0');
+    const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2,'0');
+    const secs = String(seconds % 60).padStart(2,'0');
+    return `${hrs}:${mins}:${secs}`;
+}
+
+function startStopwatch() {
+    if(stopwatchInterval) return; // prevent multiple intervals
+    stopwatchInterval = setInterval(() => {
+        stopwatchSeconds++;
+        document.getElementById('stopwatchDisplay').textContent = formatTime(stopwatchSeconds);
+    }, 1000);
+}
+
+function stopStopwatch() {
+    clearInterval(stopwatchInterval);
+    stopwatchInterval = null;
+}
+
+function resetStopwatch() {
+    stopStopwatch();
+    stopwatchSeconds = 0;
+    document.getElementById('stopwatchDisplay').textContent = "00:00:00";
+}
+</script>
 
 </body>
 </html>
