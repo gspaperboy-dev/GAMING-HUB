@@ -1,214 +1,232 @@
-<!--
-  Free single-file website: index.html
-  How to use:
-  1) Download the contents of this file and save as `index.html`.
-  2) Open it locally (double-click) to preview, or host for free on:
-     - GitHub Pages: create a repo, add this file as index.html on main branch, enable Pages (Settings → Pages → Source: main / root)
-     - Netlify Drop: https://app.netlify.com/drop (drag & drop the file into Netlify Drop)
-     - Vercel: create a new project and deploy this file
-  3) To customize: edit the text, replace images (look for IMAGE_PLACEHOLDER), change colors in the CSS variables.
-
-  Features:
-  - Responsive single-page layout
-  - Hero section, features, about, contact form (client-side only), footer
-  - Small JS for smooth scroll and mobile menu
-
-  NOTE: This is a starter template — replace placeholder text/images and configure a backend if you want form submissions to work.
--->
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Free Website — MySite</title>
-  <meta name="description" content="Simple free single-file website template" />
-  <link rel="icon" href="data:,"><!-- blank favicon, replace if you want -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Daily News Hub</title>
+    
+    <style>
+        /* Global Styles (NO CHANGES HERE) */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5; 
+            color: #1c1e21; 
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
 
-  <style>
-    :root{
-      --bg:#0f1724; /* dark blue */
-      --card:#0b1220;
-      --muted:#9aa4b2;
-      --accent:#6ee7b7; /* mint */
-      --accent-2:#60a5fa; /* blue */
-      --radius:12px;
-      --max-width:1100px;
-      --glass: rgba(255,255,255,0.03);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background:linear-gradient(180deg,var(--bg),#071025);color:#e6eef8;line-height:1.5;
-      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:24px;
-    }
-    .container{max-width:var(--max-width);margin:0 auto;padding:24px}
+        /* Header & Navigation (NO CHANGES HERE) */
+        header {
+            background: #fff; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            color: #1877f2;
+            font-size: 2em;
+            font-weight: bold;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
 
-    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#042;}
-    nav{display:flex;gap:14px;align-items:center}
-    nav a{color:var(--muted);text-decoration:none;font-weight:600}
-    .cta{background:linear-gradient(90deg,var(--accent),var(--accent-2));padding:10px 14px;border-radius:10px;color:#042;font-weight:700;text-decoration:none}
+        .topnav a {
+            color: #606770; 
+            text-decoration: none;
+            padding: 8px 15px;
+            font-size: 16px;
+            display: inline-block;
+            transition: 0.3s;
+        }
 
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-bottom:40px}
-    .hero h1{font-size:34px;margin:0 0 12px}
-    .hero p{color:var(--muted);margin:0 0 18px}
-    .buttons{display:flex;gap:12px}
+        .topnav a:hover {
+            color: #1877f2;
+        }
 
-    .card{background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(2,6,23,0.6)}
-    .mock{height:240px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600}
+        /* Main Content Layout (NO CHANGES HERE) */
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
 
-    /* features */
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
-    .feature{padding:18px;border-radius:12px;background:var(--glass);border:1px solid rgba(255,255,255,0.03)}
-    .feature h3{margin:0 0 8px}
-    .feature p{margin:0;color:var(--muted)}
+        /* --- TOP STORY SECTION (NO CHANGES HERE) --- */
+        .top-story {
+            background-color: #fff;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
 
-    /* about */
-    .about{display:flex;gap:18px;align-items:center;margin-bottom:28px}
+        .top-story h2 {
+            color: #1877f2;
+            font-size: 2.2em;
+            margin-top: 0;
+        }
 
-    /* contact */
-    form{display:grid;gap:10px}
-    input,textarea{background:#031224;border:1px solid rgba(255,255,255,0.04);padding:12px;border-radius:8px;color:#e6eef8}
-    button{background:var(--accent);border:none;padding:10px 14px;border-radius:10px;font-weight:700;color:#042;cursor:pointer}
+        .top-story img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        
+        /* --- CATEGORY CARDS SECTION (NO CHANGES HERE) --- */
+        h2.section-title {
+            font-size: 1.8em;
+            color: #1c1e21;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
 
-    footer{margin-top:28px;color:var(--muted);text-align:center}
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
 
-    /* responsive */
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr;}
-      .grid3{grid-template-columns:repeat(1,1fr);}
-      nav{display:none}
-    }
-  </style>
+        .news-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            text-decoration: none; 
+            color: inherit;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-content {
+            padding: 15px;
+            flex-grow: 1;
+        }
+
+        .card-content h3 {
+            color: #1877f2;
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background-color: #f0f2f5;
+            color: #1c1e21;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Footer (NO CHANGES HERE) */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive adjustments (NO CHANGES HERE) */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px auto;
+            }
+            .top-story {
+                padding: 20px;
+            }
+            .top-story h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">AL</div>
-        <div>
-          <div style="font-weight:700">GAMING HUB </div>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px">Gamer • Creator</div>
-        </div>
-      </div>
 
-      <nav>
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a class="cta" href="#contact">Get in touch</a>
-      </nav>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Daily News Hub</a>
+            <nav class="topnav">
+                <a href="#">Home</a>
+                <a href="#">World</a>
+                <a href="#">Local</a>
+                <a href="#">Tech</a>
+                <a href="#">Sports</a>
+            </nav>
+        </div>
     </header>
 
-    <main>
-      <section class="hero">
-        <div>
-          <h1>Simple, fast, free website — ready to use</h1>
-          <p>Create a professional single-page site with this free template. Customize text, images, and colors — then host for free.</p>
+    <div class="container">
 
-          <div class="buttons">
-            <a class="cta" href="#contact">Start</a>
-            <a style="background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:10px;text-decoration:none;color:var(--muted);font-weight:700" href="#features">See features</a>
-          </div>
+        <section class="top-story">
+            <img src="https://via.placeholder.com/1100x400?text=Thailand+Royal+News" alt="Thailand's Queen Mother Sirikit" style="filter: grayscale(40%);">
+            <h2>🇹🇭 Year-Long Mourning as Thailand's Queen Mother Sirikit Dies at 93</h2>
+            <p>Queen Mother Sirikit, a highly influential and long-serving figure in the royal family, has passed away, marking the start of a year-long mourning period in the nation.</p>
+            <a href="https://www.google.com/search?q=Thailand+Queen+Mother+Sirikit+Dies" target="_blank" style="color:#1877f2; text-decoration:none; font-weight:bold;">Read Full Article »</a>
+        </section> <h2 class="section-title">GLOBAL HEADLINE</h2>
+        <div class="card-grid">
 
-          <div style="margin-top:18px;color:var(--muted);font-size:14px">Pro tip: Change the brand name at the top and replace the mock image with your own.</div>
-        </div>
+            <a href="https://www.google.com/search?q=gaza+governance+factions" target="_blank" class="news-card">
+                <img src="https://via.placeholder.com/400x200?text=Gaza+Technocrats" alt="Gaza News" class="card-image">
+                <div class="card-content">
+                    <span class="category-tag">WORLD POLITICS</span>
+                    <h3>Post-War Gaza: Factions Agree on Independent Technocrat Committee</h3>
+                    <p>Palestinian factions have reportedly agreed that an independent committee of technocrats will take over the running of post-war Gaza.</p>
+                </div>
+            </a>
 
-        <aside class="card">
-          <div class="mock">IMAGE_PLACEHOLDER<br><small style="color:var(--muted)">Replace this with your screenshot / logo</small></div>
-          <div style="display:flex;gap:8px;margin-top:12px">
-            <div style="flex:1;background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;text-align:center">Visitors<br><strong>1,234</strong></div>
-            <div style="flex:1;background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;text-align:center">Subscribers<br><strong>89</strong></div>
-          </div>
-        </aside>
-      </section>
+            <a href="https://www.google.com/search?q=US+China+Trade+Tensions+Trump" target="_blank" class="news-card">
+                <img src="https://via.placeholder.com/400x200?text=Trump+Xi+Meeting" alt="US China Trade Talks" class="card-image">
+                <div class="card-content">
+                    <span class="category-tag">TRADE & BUSINESS</span>
+                    <h3>US-China Tensions: Trump Scheduled to Meet Xi Jinping on Asia Trip</h3>
+                    <p>US President Donald Trump is set to meet China's Xi Jinping to address escalating trade tariffs between the world's two largest economies.</p>
+                </div>
+            </a>
 
-      <section id="features">
-        <div class="grid3">
-          <div class="feature card">
-            <h3>Fast & Lightweight</h3>
-            <p>Single-file HTML, no large libraries — loads quickly on slow connections.</p>
-          </div>
-          <div class="feature card">
-            <h3>Responsive</h3>
-            <p>Looks great on phones, tablets and desktops (mobile-first design).</p>
-          </div>
-          <div class="feature card">
-            <h3>Easy to edit</h3>
-            <p>Change text, colors, and images with any code editor or Notepad.</p>
-          </div>
-        </div>
-      </section>
+            <a href="https://www.google.com/search?q=US+Sanctions+Colombian+President+Petro" target="_blank" class="news-card">
+                <img src="https://via.placeholder.com/400x200?text=Colombia+Sanctions" alt="Colombia Sanctions" class="card-image">
+                <div class="card-content">
+                    <span class="category-tag">AMERICAS</span>
+                    <h3>US Sanctions Colombian President Petro Over Failure to Halt Cartels</h3>
+                    <p>The United States has placed sanctions on President Gustavo Petro, citing his administration's alleged failure to effectively tackle drug cartels.</p>
+                </div>
+            </a>
+            
+            <a href="https://www.google.com/search?q=Canada+Trade+Talks+Terminated" target="_blank" class="news-card">
+                <img src="https://via.placeholder.com/400x200?text=Canada+Trade" alt="Canada Trade" class="card-image">
+                <div class="card-content">
+                    <span class="category-tag">DIPLOMACY</span>
+                    <h3>Canada Trade Talks Terminated by Trump Over Controversial Ad</h3>
+                    <p>President Trump abruptly ended trade negotiations with Canada after a political advertisement criticized his tariff policies.</p>
+                </div>
+            </a>
 
-      <section id="about" class="about">
-        <div style="flex:1">
-          <div class="card">
-            <h2 style="margin-top:0">About this template</h2>
-            <p style="color:var(--muted)">This is a starter template perfect for gamers, creators, portfolios, and small projects. It's intentionally simple so you can adapt it quickly.</p>
-          </div>
-        </div>
-        <div style="width:320px">
-          <div class="card">
-            <h3 style="margin-top:0">What to change</h3>
-            <ul style="color:var(--muted);margin:0;padding-left:18px">
-              <li>Replace the brand and logo text.</li>
-              <li>Swap IMAGE_PLACEHOLDER with your screenshot or banner.</li>
-              <li>Update contact details in the contact form (or connect a backend).</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" style="margin-top:14px">
-        <div class="card">
-          <h2 style="margin-top:0">Contact / Demo Form</h2>
-          <p style="color:var(--muted)">This demo form works only on the client — it validates inputs and shows a success message. To receive submissions, connect it to a backend or use a form service.</p>
-
-          <form id="contactForm" onsubmit="return false">
-            <input id="name" placeholder="Your name" required />
-            <input id="email" placeholder="Email" type="email" required />
-            <textarea id="message" placeholder="Message" rows="4" required></textarea>
-            <div style="display:flex;gap:8px;align-items:center">
-              <button id="sendBtn">Send message</button>
-              <div id="status" style="color:var(--muted);font-size:13px"></div>
-            </div>
-          </form>
-        </div>
-      </section>
-
-    </main>
-
-    <footer>
-      <div style="max-width:700px;margin:0 auto">Made with ♥ — Edit this template for your channel or project. • <span style="color:var(--muted)">ALONE LEGEND</span></div>
+        </div> </div> <footer>
+        <p>My Daily News Hub &copy; 2025 | All Rights Reserved.</p>
     </footer>
-  </div>
 
-  <script>
-    // small JS: simple form validation + mobile smooth scroll
-    document.getElementById('sendBtn').addEventListener('click', function(){
-      var name = document.getElementById('name').value.trim();
-      var email = document.getElementById('email').value.trim();
-      var msg = document.getElementById('message').value.trim();
-      var s = document.getElementById('status');
-      if(!name || !email || !msg){ s.textContent = 'Please fill all fields.'; return; }
-      if(!/^\S+@\S+\.\S+$/.test(email)){ s.textContent = 'Enter a valid email.'; return; }
-      s.style.color = 'var(--accent)'; s.textContent = 'Thanks — message recorded (demo).';
-      setTimeout(()=>{ s.textContent=''; }, 5000);
-      // NOTE: replace this section with an actual POST to your backend to save messages
-    });
-
-    // Smooth scroll for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(el=>{
-      el.addEventListener('click', function(e){
-        var target = document.querySelector(this.getAttribute('href'));
-        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
-      });
-    });
-  </script>
 </body>
 </html>
-
